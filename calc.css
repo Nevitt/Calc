@@ -32,8 +32,9 @@
 }
 
 .button{
-    padding-top: 10px;
+    padding-top: 8px;
     background-color: rgb(177, 177, 177);0
+    
 }
 .button:hover{
     border-radius: 5px;

@@ -4,6 +4,7 @@ let numStr="";
 let pastNum=undefined;
 let newNum;
 let operator;
+let multiOp;
 
 function clkNumber(num){
     if(numStr.length < 16){
@@ -27,7 +28,8 @@ function clkClear(){
 
 function clkDivide(){
     console.log('pastNum Before = ' +pastNum);
-    pastNum = parseInt(display.textContent);
+    pastNum = parseInt(numStr);
+    console.log('pastNum after = ' +pastNum);
     if(pastNum==undefined || pastNum == 0){
         alert("Cannot Divide by 0")
         return;
@@ -40,28 +42,68 @@ function clkDivide(){
 }
 
 function clkMulti(){
+    if(multiOp==true){
+        pastNum = parseInt(display.textContent);
+        console.log('pastNum multip op = ' + pastNum);
+    }
+    else{
+        pastNum = parseInt(numStr);
+    }
+    multiOp=true;
     
     operator = "multi";
     console.log(operator);
+    display.textContent = "0";
+    numStr="";
     return;
 }
 
 function clkMinus(){
-    
+    if(multiOp==true){
+        pastNum = parseInt(display.textContent);
+        console.log('pastNum multip op = ' + pastNum);
+    }
+    else{
+        pastNum = parseInt(numStr);
+    }
+    multiOp=true;
+
     operator = "minus";
     console.log(operator);
+    display.textContent = "0";
+    numStr = "";
+    
     return;
 }
 
 function clkPlus(){
-
-    pastNum = parseInt(numStr);
+//if(operator != ""){
+    if(multiOp==true){
+        pastNum = parseInt(display.textContent);
+        console.log('pastNum multip op = ' + pastNum);
+    }
+    else{
+        pastNum = parseInt(numStr);
+    }
+    
     operator = "plus";
     console.log(operator);
-    display.textContent = "0"
+    display.textContent = "0";
     numStr = "";
-    
+    multiOp=true;
     return;
+/*}
+else{
+    console.log('inside else');
+    console.log('pastNum =' +pastNum);
+    pastNum = parseInt(pastNum)+parseInt(numStr);
+    console.log('pastnum after =' + pastNum);
+    operator = "";
+    display.textContent = pastNum;
+    numStr="";
+    multiOp = true;
+    return
+}*/
 }
 
 function clkEquals(){
@@ -69,22 +111,32 @@ function clkEquals(){
         return;
     }
     else if(operator=="plus"){
-        console.log('past num = '+pastNum);
-        console.log('numStr = ' + numStr);
-        console.log('operator = ' + operator);
         pastNum = parseInt(pastNum)+parseInt(numStr);
         display.textContent = pastNum;
         operator = "";
         numStr = undefined;
+        multiOp = true;
     }
     else if(operator=="minus"){
-
+        pastNum = parseInt(pastNum)-parseInt(numStr);
+        display.textContent = pastNum;
+        operator = "";
+        numStr = undefined;
+        multiOp = true;
     }
     else if(operator=="div"){
-
+        pastNum = parseInt(pastNum)/parseInt(numStr);
+        display.textContent = pastNum;
+        operator = "";
+        numStr = undefined;
+        multiOp = true;
     }
     else if(operator=="multi"){
-
+        pastNum = parseInt(pastNum)*parseInt(numStr);
+        display.textContent = pastNum;
+        operator = "";
+        numStr = undefined;
+        multiOp = true;
     }
     
     
