@@ -148,18 +148,15 @@ function operate(opp, num1, num2){
     else if(opp=="divide"){
         if(num2 != 0){
             num1 = parseFloat(num1) / parseFloat(num2);
+            pastNum = num1;
+            display.textContent = num1;
+            numStr = "";
+            return(num1); 
         }
-        else if (num2 ==0){
-            alert('Error Div0');
-            display.textContent = 'Error Division by 0';
-            pastNum=0;
-            numStr=0;
-            return;
-        }
-        pastNum = num1;
-        display.textContent = num1;
-        numStr = "";
-        return(num1);    
+        else if (num2 == 0){
+            alert('Error Div0',clkClear());
+            clkClear();
+        }   
     }
     else{
         return;
