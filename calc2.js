@@ -148,6 +148,8 @@ function operate(opp, num1, num2){
     else if(opp=="divide"){
         if(num2 != 0){
             num1 = parseFloat(num1) / parseFloat(num2);
+            num1 = Math.round(num1*10000000);
+            num1 = num1/10000000;
             pastNum = num1;
             display.textContent = num1;
             numStr = "";
