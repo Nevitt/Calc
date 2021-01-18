@@ -1,4 +1,5 @@
 const display = document.getElementById('display');
+const stored = document.getElementById('stored');
 
 let numStr="";
 let pastNum=undefined;
@@ -8,7 +9,7 @@ let multiOp;
 
 function clkNumber(num){
     if(numStr.length < 16){
-    console.log(num);
+    //console.log(num);
     numStr = numStr+ num;
     display.textContent = numStr;
     //console.log("numStr length = "+numStr.length);
@@ -21,6 +22,7 @@ function clkNumber(num){
 function clkClear(){
 
     display.textContent = "0";
+    stored.textContent = "0";
     numStr = "";
     operator = "";
     pastNum=undefined;
@@ -78,17 +80,25 @@ function clkMinus(){
 
 function clkPlus(){
 //if(operator != ""){
+    if(pastNum != undefined){
+        pastNum = operate(pastNum,parseInt(numStr),"plus");
+        document.textContent = pastNum;
+        //console.log('pastNum='+pastNum);
+    }/*
     if(multiOp==true){
-        pastNum = parseInt(display.textContent);
+        //pastNum = parseInt(display.textContent);
+        document.textContent = pastNum = operate(pastNum,parseInt(numStr),"plus");
         console.log('pastNum multip op = ' + pastNum);
-    }
-    else{
+    }*/
+    else
+    {
         pastNum = parseInt(numStr);
+        document.textContent = numStr+"+";
     }
     
     operator = "plus";
-    console.log(operator);
-    display.textContent = "0";
+    //console.log(operator);
+    //display.textContent = "0";
     numStr = "";
     multiOp=true;
     return;
@@ -110,7 +120,11 @@ function clkEquals(){
     if(operator==""){
         return;
     }
-    else if(operator=="plus"){
+    else {
+        let num2 = parseInt(numStr);
+        display.textContent = pastNum = operate(pastNum,num2,operator);
+        multiOp=false;
+    }/*(operator=="plus"){
         pastNum = parseInt(pastNum)+parseInt(numStr);
         display.textContent = pastNum;
         operator = "";
@@ -137,9 +151,54 @@ function clkEquals(){
         operator = "";
         numStr = undefined;
         multiOp = true;
+    }*/
+
+    
+}
+
+function operate(num1, num2, op){
+    if(num2==NaN){
+        console.log("num2==nan but num2 does = "+num2);
     }
-    
-    
+    else{
+        
+    if(op=="plus"){
+        console.log('num1='+num1);
+        console.log('num2='+num2);
+        console.log('op='+op);
+        num1 = parseInt(num1) + parseInt(num2);
+        console.log('After num1='+num1);
+        display.textContent = num1;
+        operator = "";
+        numStr = undefined;
+        multiOp = true;
+        return(num1)
+    }
+    else if(op=="minus"){
+        num1 = num1 - num2;
+        display.textContent = num1;
+        operator = "";
+        numStr = undefined;
+        multiOp = true;
+        return(num1)
+    }
+    else if(op=="div"){
+        num1 = num1 / num2;
+        display.textContent = num1;
+        operator = "";
+        numStr = undefined;
+        multiOp = true;
+        return(num1)
+    }
+    else if(op=="multi"){
+        num1 = num1 * num2;
+        display.textContent = num1;
+        operator = "";
+        numStr = undefined;
+        multiOp = true;
+        return(num1)
+    }
+}
 }
 
 const btn0 = document.getElementById('0');

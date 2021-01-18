@@ -8,6 +8,7 @@
     width: 450px;
     height: 300px;
     background-color: rgb(228, 228, 228);
+    margin-top: 100px;
 }
 
 #display{
@@ -20,7 +21,22 @@
     text-align: right;
     line-height: 60px;
     font-size: 45px;
+    resize: none;
 }
+
+#stored{
+    border: solid 1px;
+    border-radius: 5px;
+    height: 50px;
+    margin-top: 0px;
+    width: 435px;
+    background-color: rgb(190, 190, 190);
+    text-align: left;
+    line-height: 50px;
+    font-size: 40px;
+    resize: none;
+}
+
 
 #grid{
     display: grid;
@@ -33,7 +49,8 @@
 
 .button{
     padding-top: 8px;
-    background-color: rgb(177, 177, 177);0
+    background-color: rgb(177, 177, 177);
+    border-radius: 7px;
     
 }
 .button:hover{
@@ -44,7 +61,7 @@
 
 .keypad{
     height: 30px;
-    padding-top: 50px;
+    padding-top: 30px;
 }
 
 
